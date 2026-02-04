@@ -1,39 +1,19 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-
-import routes from "./routes.js";
-
-import { useAuthStore } from "../store/auth.store.js";
-
-
+import App from "../App.vue";
 
 const router = createRouter({
-
-  history: createWebHashHistory(),
-
-  routes,
-
-  scrollBehavior() {
-
-​    return { left: 0, top: 0 };
-
-  }
-
+  history: createWebHashHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: "/",
+      name: "home",
+      component: App
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      redirect: "/"
+    }
+  ]
 });
-
-
-
-router.beforeEach((to) => {
-
-  const auth = useAuthStore();
-
-  const isAuthRoute = to.path.startsWith("/auth");
-
-  if (!isAuthRoute && !auth.isAuthed) return "/auth/login";
-
-  if (isAuthRoute && auth.isAuthed) return "/app/command";
-
-});
-
-
 
 export default router;
