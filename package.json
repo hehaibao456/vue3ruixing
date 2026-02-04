@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "cesium": "^1.124.0",
-    "echarts": "^6.0.0"
+    "echarts": "^6.0.0",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.4",
